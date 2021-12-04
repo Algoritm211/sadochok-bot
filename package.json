@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
     "consola": "^2.15.3",
     "dotenv": "^10.0.0",
     "mongoose": "^5.13.13",
