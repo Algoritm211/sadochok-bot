@@ -4,9 +4,10 @@ const consola = require('consola');
 const mongoose = require('mongoose');
 const mainMenuKeyboard = require('./keyboards/main-menu.keyboard');
 const chooseBetScene = require('./scenes/choose-bet.scene');
+const forecastScene = require('./scenes/forecast.scene');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
-const stage = new Scenes.Stage([chooseBetScene]);
+const stage = new Scenes.Stage([chooseBetScene, forecastScene]);
 bot.use(session());
 bot.use(stage.middleware());
 
@@ -21,6 +22,9 @@ bot.on('text', async (ctx) => {
   switch (ctx.message.text) {
     case 'Ставки':
       await ctx.scene.enter('CHOOSE_BET_SCENE')
+      return
+    case 'Прогнозы':
+      await ctx.scene.enter('CHOOSE_FORECAST_SCENE')
       return
     default:
       return await ctx.reply('Повторите еще раз')
