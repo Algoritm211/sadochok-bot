@@ -7,7 +7,7 @@ const forecastScene = new BaseScene('CHOOSE_FORECAST_SCENE');
 
 const categoryHandler = async (ctx) => {
   await ctx.reply(
-    'Выберите желаемую категорию для прогнозов',
+    '📊Пожалуйста, выберите желаемую категорию для 💠прогнозов💠',
     forecastCategoryKeyboard
   );
 };
@@ -23,7 +23,7 @@ forecastScene.action(/^category:[a-z]+$/, async (ctx) => {
 
 forecastScene.hears('Главное меню', async (ctx) => {
   await ctx.scene.leave();
-  await ctx.reply('Вы перешли в главное меню', mainMenuKeyboard);
+  await ctx.reply('🏡Вы перешли в главное меню🏡', mainMenuKeyboard);
 });
 
 module.exports = forecastScene;

@@ -8,7 +8,10 @@ const {BaseScene} = Scenes;
 const chooseBetScene = new BaseScene('CHOOSE_BET_SCENE');
 
 const categoryHandler = async (ctx) => {
-  await ctx.reply('Выберите желаемую категорию для ставок', betCategoryKeyboard);
+  await ctx.reply(
+    '💶В настоящий момент вы можете выбрать такие👀 категории для ставок🔋:',
+    betCategoryKeyboard
+  );
 };
 
 chooseBetScene.enter(categoryHandler);
@@ -16,7 +19,7 @@ chooseBetScene.enter(categoryHandler);
 // /^category:[\D]+$/
 chooseBetScene.action(/^category:[a-z]+$/, async (ctx) => {
   // Getting "football" from "category:football"
-  await ctx.editMessageText('Загрузка...')
+  await ctx.editMessageText('🔄Загрузка...🔄')
   const category = ctx.callbackQuery.data.split(':')[1];
   const matchesData = await getAllMatches(category);
   const formattedMessage = formatMatchesToHTML(matchesData);

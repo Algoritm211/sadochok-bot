@@ -4,7 +4,6 @@ require('dotenv').config({
 });
 const axios = require('axios');
 const api_token = process.env.API_TOKEN;
-console.log(api_token);
 const regions = 'eu';
 const markets = 'h2h';
 
