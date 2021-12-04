@@ -15,6 +15,7 @@
     "axios": "^0.24.0",
     "consola": "^2.15.3",
     "dotenv": "^10.0.0",
+    "luxon": "^2.1.1",
     "mongoose": "^5.13.13",
     "nodemon": "^2.0.15",
     "telegraf": "^4.4.2"

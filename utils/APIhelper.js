@@ -4,15 +4,15 @@ require('dotenv').config({
 });
 const axios = require('axios');
 const api_token = process.env.API_TOKEN;
-const sport = 'soccer';
+console.log(api_token);
 const regions = 'eu';
 const markets = 'h2h';
 
 
 // Main Get Func From API
-const GetAllMatches = async () => {
+const getAllMatches = async (sportType) => {
   try {
-    const {data} = await axios.get(`https://api.the-odds-api.com/v4/sports/${sport}/odds/?apiKey=${api_token}&regions=${regions}&markets=${markets}`);
+    const {data} = await axios.get(`https://api.the-odds-api.com/v4/sports/${sportType}/odds/?apiKey=${api_token}&regions=${regions}&markets=${markets}`);
     return FormatDataForBot(data);
   } catch (error) {
     console.log('Error status', error);
@@ -31,9 +31,9 @@ function FormatObject(item, index) {
   let awayPrice = 1;
   let prices = item['bookmakers'][0]['markets'][0]['outcomes'];
   for (let i = 0; i < Object.keys(prices).length; i++) {
-    if (prices[i]['name'] == item['home_team']) {
+    if (prices[i]['name'] === item['home_team']) {
       homePrice = prices[i]['price'];
-    } else if (prices[i]['name'] == item['away_team']) {
+    } else if (prices[i]['name'] === item['away_team']) {
       awayPrice = prices[i]['price'];
     }
   }
@@ -45,4 +45,6 @@ function FormatObject(item, index) {
 }
 
 //For Enter Just Use:
-GetAllMatches().then((data) => console.log(data));
+// getAllMatches().then((data) => console.log(data));
+
+module.exports = getAllMatches
