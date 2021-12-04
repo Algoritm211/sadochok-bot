@@ -2,7 +2,7 @@ const {Telegraf, Markup, session, Scenes} = require('telegraf');
 require('dotenv').config();
 const consola = require('consola');
 const mongoose = require('mongoose');
-const mainMenuKeyboard = require('./keyboards/main-menu.keyboard');
+const {mainMenuKeyboard, redirectToPlatform, makeForecast} = require('./keyboards/main-menu.keyboard');
 const chooseBetScene = require('./scenes/choose-bet.scene');
 const forecastScene = require('./scenes/forecast.scene');
 
@@ -21,15 +21,40 @@ bot.start(async (ctx) => {
 bot.on('text', async (ctx) => {
   switch (ctx.message.text) {
     case 'Ставки':
-      await ctx.scene.enter('CHOOSE_BET_SCENE')
-      return
+      await ctx.scene.enter('CHOOSE_BET_SCENE');
+      return;
     case 'Прогнозы':
-      await ctx.scene.enter('CHOOSE_FORECAST_SCENE')
-      return
+      await ctx.scene.enter('CHOOSE_FORECAST_SCENE');
+      return;
+    case 'Мой кабинет':
+      await bot.telegram.sendMessage(
+        ctx.message.chat.id,
+        `<b>Личный профиль пользователя</b>\n\n<i>Ваше имя: ${ctx.message.from.first_name}</i>\n\nВ настоящий момент нет дополнительной информации
+        `,
+
+        {
+          parse_mode: 'HTML', reply_markup: {
+            inline_keyboard: [[
+              Markup.button.callback('Сделать прогноз', 'maintenance'),
+            ]],
+          },
+        },
+      );
+      return;
+    case 'Платформа':
+      await ctx.reply('Перейти на платформу с прогнозами', redirectToPlatform);
+      return;
     default:
-      return await ctx.reply('Повторите еще раз')
+      return await ctx.reply('Я не знаю такой команды, воспользуйтесь предоставленными кнопками');
   }
-})
+});
+
+bot.action('maintenance', (ctx) => {
+  ctx.answerCbQuery(
+    'В настоящее время опция в разработке',
+    {show_alert: true},
+  );
+});
 
 const START = async () => {
   await bot.launch();

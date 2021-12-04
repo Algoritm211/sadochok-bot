@@ -1,6 +1,6 @@
-const {Scenes, Markup} = require('telegraf');
+const {Scenes} = require('telegraf');
 const betCategoryKeyboard = require('../keyboards/bet-category.keyboard');
-const mainMenuKeyboard = require('../keyboards/main-menu.keyboard');
+const {mainMenuKeyboard} = require('../keyboards/main-menu.keyboard');
 const exitKeyboard = require('../keyboards/exit.keyboard');
 const {BaseScene} = Scenes;
 const chooseBetScene = new BaseScene('CHOOSE_BET_SCENE');

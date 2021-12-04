@@ -1,5 +1,5 @@
 const {Scenes} = require('telegraf');
-const mainMenuKeyboard = require('../keyboards/main-menu.keyboard');
+const {mainMenuKeyboard} = require('../keyboards/main-menu.keyboard');
 const exitKeyboard = require('../keyboards/exit.keyboard');
 const forecastCategoryKeyboard = require('../keyboards/forecast-category.keyboard');
 const {BaseScene} = Scenes;

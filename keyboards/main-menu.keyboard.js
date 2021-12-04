@@ -5,4 +5,12 @@ const mainMenuKeyboard = Markup.keyboard([
   ['Мой кабинет', 'Платформа'],
 ]).oneTime().resize();
 
-module.exports = mainMenuKeyboard
+const redirectToPlatform = Markup.inlineKeyboard([
+  Markup.button.url('Перейти', 'google.com')
+])
+
+const makeForecast = Markup.inlineKeyboard([
+  Markup.button.callback('Сделать прогноз', 'maintenance')
+])
+module.exports = {mainMenuKeyboard, redirectToPlatform, makeForecast}
+
