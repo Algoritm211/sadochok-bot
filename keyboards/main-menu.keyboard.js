@@ -3,6 +3,7 @@ const {Markup} = require('telegraf');
 const mainMenuKeyboard = Markup.keyboard([
   ['💰Ставки💰', '📊Прогнозы📊'],
   ['👨‍💻Мой кабинет👨‍💻', '🖥Платформа🖥'],
+  ['🎓Основы🎓'],
 ]).oneTime().resize();
 
 const redirectToPlatform = Markup.inlineKeyboard([

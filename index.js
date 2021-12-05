@@ -5,10 +5,11 @@ const mongoose = require('mongoose');
 const {mainMenuKeyboard, redirectToPlatform, makeForecast} = require('./keyboards/main-menu.keyboard');
 const chooseBetScene = require('./scenes/choose-bet.scene');
 const forecastScene = require('./scenes/forecast.scene');
+const faqScene = require('./scenes/faq.scene');
 const phrases = require('./phrases.json')
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
-const stage = new Scenes.Stage([chooseBetScene, forecastScene]);
+const stage = new Scenes.Stage([chooseBetScene, forecastScene, faqScene]);
 bot.use(session());
 bot.use(stage.middleware());
 
@@ -44,6 +45,9 @@ bot.on('text', async (ctx) => {
       return;
     case '🖥Платформа🖥':
       await ctx.reply('Перейти на платформу с прогнозами', redirectToPlatform);
+      return;
+    case '🎓Основы🎓':
+      await ctx.scene.enter('FAQ_SCENE');
       return;
     default:
       return await ctx.reply('Я не знаю такой команды, воспользуйтесь предоставленными кнопками');
