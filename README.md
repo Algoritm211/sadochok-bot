@@ -3,11 +3,11 @@
 1. Clone app to your computer (`git clone https://github.com/Algoritm211/sadochok-bot.git`)
 2. Run `npm install` to install all libraries (dependencies) of project
 3. Create file `.env`, where write your bot token and MongoDB Atlas URL to a variables. Example: `BOT_TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11` (Not a real token, don't even try😉) and `dbURL=mongodb+srv://<username>:<password>@cluster0.sfcrg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-4. Add API_TOKEN for Odds betting API. Example: `API_TOKEN=1c8asd4a7e49rwq3qw20c1947c1mfasd7a4668f9ffd5`
 
 **[Here](https://core.telegram.org/bots/api#authorizing-your-bot)** you can get information about where you can get the token
 
 4. Launch project with command `npm run dev` to run bot in development mode.
+5. Add API_TOKEN for Odds betting API. Example: `API_TOKEN=1c8asd4a7e49rwq3qw20c1947c1mfasd7a4668f9ffd5`
 
 # Creators
 ### <i>Timofey Fedorchuk</i>
