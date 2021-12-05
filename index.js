@@ -6,7 +6,7 @@ const {mainMenuKeyboard, redirectToPlatform, makeForecast} = require('./keyboard
 const chooseBetScene = require('./scenes/choose-bet.scene');
 const forecastScene = require('./scenes/forecast.scene');
 const faqScene = require('./scenes/faq.scene');
-const phrases = require('./phrases.json')
+const phrases = require('./phrases.json');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 const stage = new Scenes.Stage([chooseBetScene, forecastScene, faqScene]);
@@ -17,7 +17,15 @@ bot.use(stage.middleware());
 bot.start(async (ctx) => {
   const userName = ctx.message.from.first_name;
   ctx.reply(`🔸<i>Доброго времени суток, ${userName}!🔸</i>\n\n${phrases.startPhrase}`,
-    {parse_mode: 'HTML', reply_markup: mainMenuKeyboard.reply_markup})
+    {parse_mode: 'HTML', reply_markup: mainMenuKeyboard.reply_markup});
+});
+
+bot.help(async (ctx) => {
+  ctx.telegram.sendMessage(
+    ctx.message.chat.id,
+    phrases.helpPhrase,
+    {parse_mode: 'HTML', reply_markup: mainMenuKeyboard.reply_markup}
+  )
 });
 
 bot.on('text', async (ctx) => {

@@ -22,6 +22,14 @@ chooseBetScene.action(/^category:[a-z]+$/, async (ctx) => {
   await ctx.editMessageText('🔄Загрузка...🔄')
   const category = ctx.callbackQuery.data.split(':')[1];
   const matchesData = await getAllMatches(category);
+  if (matchesData.length === 0) {
+    await ctx.telegram.sendMessage(
+      ctx.update.callback_query.from.id,
+      '🧐 В настоящий момент матчей не найдено🔍, но как будут - мы обязательно Вас об этом уведомим🤝',
+      {parse_mode: 'HTML', reply_markup: exitKeyboard.reply_markup}
+    );
+    return
+  }
   const formattedMessage = formatMatchesToHTML(matchesData);
   await ctx.telegram.sendMessage(
     ctx.update.callback_query.from.id,

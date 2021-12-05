@@ -15,6 +15,7 @@ const getAllMatches = async (sportType) => {
     return FormatDataForBot(data);
   } catch (error) {
     console.log('Error status', error);
+    return [];
   }
 }
 
